@@ -139,8 +139,8 @@ function display_page(vol,page) {
               width="98%"; height="98%"> ${android} </object>`;
    imageElt = `<embed id='servepdf' type='application/pdf' src='${urlcur}' 
               width="98%"; height="98%"/>` ;
-   imageElt = `<iframe src="${urlcur}" style="width:100%;height:700px;"></iframe>`
-   imageElt = `<iframe src="${urlcur}" style="width:100%;height:580px;"></iframe>`
+   imageElt = `<iframe src="${urlcur}" style="width:100%;height:700px;"></iframe>`;
+   imageElt = `<iframe src="${urlcur}" style="width:100%;height:580px;"></iframe>`;
    elt2.innerHTML = imageElt;
   }else {
    html = `Vol ${vol}, Page ${page} NOT FOUND`;
