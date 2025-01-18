@@ -30,4 +30,31 @@ THe 'kanda' field is blank
 ---
 vol -  two volumes (Burnouf had three)
 ---
+***********************************************************
+01-18-2025
+Ref: https://github.com/sanskrit-lexicon/PWG/issues/83#issuecomment-2592597118
 
+Revise Bombay.BhP.index.Vol1.txt using diff_Bombay.BhP.index.Vol1.txt
+Revise Bombay.BhP.index.Vol2.txt using diff_Bombay.BhP.index.Vol2.txt
+
+cat Bombay.BhP.index.Vol1.txt Bombay.BhP.index.Vol2.txt > Bombay.BhP.index.txt
+
+-----
+# manual edit Bombay.BhP.index.txt
+x- remove header text from volume II.
+x- add newline after last line
+  - not needed, as was done in Bombay.BhP.index.Vol2.txt
+x- offload appendix  lines:
+   from 'II	878	(XII)		1	7	30b'
+  to end
+  Put these lines in Bombay.BhP.appendix.index.txt
+-----
+remake index.js:
+python make_js_index.py Bombay.BhP.index.txt index.js
+
+python make_js_index.py Bombay.BhP.index.txt index.js
+1924 Page records read from Bombay.BhP.index.txt
+2620 lines written to index.js
+
+# install in app
+cp index.js ../ksverse.js
