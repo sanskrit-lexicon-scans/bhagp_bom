@@ -58,3 +58,51 @@ python make_js_index.py Bombay.BhP.index.txt index.js
 
 # install in app
 cp index.js ../ksverse.js
+-------------------------------------------------------
+Look for problems in index
+---
+# first run
+python two_adhyaya_page.py Bombay.BhP.index.txt tempout.txt
+4 problems identified
+---
+problem at irec=438 -- adhyaya wrong. corrected
+---
+problem at irec=440 -- adhyaya wrong
+
+---  
+problem at irec=477
+I	428	(IV)	17	21	30	40b Agrees with pdf 1428.pdf
+I	429	(IV)	18	13	25	42a Agrees with pdf 1429.pdf
+  verses 4,18,1-12  missing!  no pdf page found here  !
+
+---
+problem at irec=602
+I	540	(V)	7	7	10	16b
+I	541	(V)	8	6	12	18a
+ verses 5,8,1-5  missing!  No pdf page found here !
+
+
+ page 1429.pdf
+ https://sanskrit-lexicon-scans.github.io/bhagp_bom/pdfpages/1429.pdf
+
+---
+# end just two corrections to Bombay.BhP.index.txt
+
+ I      397     (IV)    9       17      25      25a
+-I      398     (IV)    8       26      34      25b
+-I      399     (IV)    8       35      45      26a
++I      398     (IV)    9       26      34      25b
++I      399     (IV)    9       35      45      26a
+ I      400     (IV)    9       46      57      26b
+
+---
+python make_js_index.py Bombay.BhP.index.txt index.js
+
+1924 Page records read from Bombay.BhP.index.txt
+2620 lines written to index.js
+
+# install in app
+cp index.js ../ksverse.js
+
+---------------------------------------------------
+THE END
