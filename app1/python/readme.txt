@@ -105,4 +105,27 @@ python make_js_index.py Bombay.BhP.index.txt index.js
 cp index.js ../ksverse.js
 
 ---------------------------------------------------
+01-20-2025
+Edit to Bombay.BhP.index.txt
+I	639	(VI)	2	1	8ab	5a
+I	640	(VI)	2	8cd	12	5b
+
+I	647	(VI)	3	17	24ab	9a
+I	648	(VI)	3	24cd	27	9b
+
+Here, Jim said he did this, but he did not actually do it before.
+Now done.
+---
+# recompute index.js and install in app
+
+python make_js_index.py Bombay.BhP.index.txt index.js
+cp index.js ../ksverse.js
+
+---
+# commit this change.
+git add .
+git commit -m "Correct oversight in Bombay.BhP.index.txt
+Ref: https://github.com/sanskrit-lexicon/PWG/issues/83"
+git push
+
 THE END
