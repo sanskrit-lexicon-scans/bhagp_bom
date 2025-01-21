@@ -158,7 +158,12 @@ Change the index for the new pages
 
 --------------------------
 python make_js_index.py Bombay.BhP.index.txt index.js
+1930 Page records read from Bombay.BhP.index.txt
+2626 lines written to index.js
+
 cp index.js ../ksverse.js
+
+Sync to github
 
 --------------------------
 THE END

@@ -145,7 +145,7 @@ ul, #indexUL {
  //  (setq js-indent-level 1)
  function make_index() {
   // (setq js-indent-level 1)
-  let dbg = true;
+  let dbg = false; //true;
   let outarr = [];
   outarr.push('<div>')
   outarr.push('<H3 style="padding-left: 10px;">Index</H3>');
@@ -170,12 +170,15 @@ ul, #indexUL {
      let v2 = pagerec['v2'];
      let v1x = v1 + pagerec['x1'];
      let v2x = v2 + pagerec['x2'];
+     let vp = pagerec['vp'];  // 01-20-2025
      //let btn = `<button onclick="display_page(${v},${p});">verses ${v1}-${v2}</button>`;
      //let elt = `<li class="page" id="page${v}.${p}">${btn}</li>`;
      //let a = `<a href="javascript:display_page(${v},${p});" class="apage">verses ${v1}-${v2}</a>`;
      //let a = `<a onclick="javascript:display_page(${v},${p});this.style.fontWeight='bold';" class="apage">verses ${v1}-${v2}</a>`;
-     let a = `<span onclick="javascript:display_page(${v},${p});this.style.fontWeight='bold';" class="apage">verses ${v1x}-${v2x}</span>`;
-     let elt = `<li class="page" id="page${v}.${p}">${a}</li>`;
+     //let a = `<span onclick="javascript:display_page(${v},${p});this.style.fontWeight='bold';" class="apage">verses ${v1x}-${v2x}</span>`;
+     let a = `<span onclick="javascript:display_page('${vp}');this.style.fontWeight='bold';" class="apage">verses ${v1x}-${v2x}</span>`;
+     //let elt = `<li class="page" id="page${v}.${p}">${a}</li>`;
+     let elt = `<li class="page" id="vp_${vp}">${a}</li>`;
      if (dbg) {console.log('elt=',elt); dbg=false;}
      outarr.push(elt);
     }
@@ -196,9 +199,9 @@ ul, #indexUL {
   return html;
  }
   function test_make_index() {
-   console.log('test_make_index entered');
+   //console.log('test_make_index entered');
    let html = make_index();
-   console.log('html length=',html.length);
+   //console.log('html length=',html.length);
    let elt=document.getElementById('index');
    elt.innerHTML = `<div style="padding-left: 10px;">${html}</div>`;
    init_treeview_toggle();

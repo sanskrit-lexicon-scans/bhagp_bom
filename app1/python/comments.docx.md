@@ -7,7 +7,9 @@ Page 192 – ipage 8b AFTER page 193 \- ipage 7a (error in ipages)
 The scan missed some pages:  
 Page 428 – ipage 40b AFTER page 429 – ipage 42a (missed 2 pages – 41a, 41b)  
 Page 540 – ipage 16b AFTER page 541 – ipage 18a (missed 2 pages – 17a, 17b)  
-Page 748 – ipage 9b AFTER page 749 – ipage 11a (missed 2 pages – 10a, 10b)  
+Page 748 – ipage 9b AFTER page 749 – ipage 11a (missed 2 pages – 10a, 10b)
+
+Jim: Andhrabharati found good substitutes, which are now installed 01-21-2025
 \------
 
 Two verses appear partly at the bottom of one page and partly at the top of the next page:

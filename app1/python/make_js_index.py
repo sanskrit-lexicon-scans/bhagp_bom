@@ -22,6 +22,11 @@ ipage is an 'internal page number'  Not used by this app
   flagnum = True
   vol_raw = parts[0]  #I,II,III
   page_raw = parts[1] # internal to volume. digits
+  # 01-20-2025  Use 'x,y' suffixes on EXTRA pages
+  m = re.search(r'^([0-9]+)(.*)$',page_raw)
+  assert m != None
+  page_raw0 = m.group(1)
+  page_xtra = m.group(2)
   kanda_raw = parts[2] # skandha (I,II,...,IX)
   sarga_raw = parts[3] # adhy
   verse1_raw = parts[4] 
@@ -32,7 +37,8 @@ ipage is an 'internal page number'  Not used by this app
                 'X':10, 'XI':11, 'XII':12,'':0}
   self.vol = droman_int[vol_raw]  # 1,2
   assert self.vol in (1,2)
-  self.page = int(page_raw)
+  self.page = int(page_raw0)
+  vpstr = '%s%03d%s' %(self.vol,self.page,page_xtra)
   self.ipage = ipage_raw
   kanda_raw_noparen = kanda_raw[1:-1]
   assert kanda_raw == '(' + kanda_raw_noparen + ')'
@@ -52,7 +58,6 @@ ipage is an 'internal page number'  Not used by this app
   self.verse2x = m.group(2)
   # set flag to skip the lines at end with empty volume
   self.flagnum = True # used?
-  vpstr = '%s%03d' %(self.vol,self.page)
   self.vp = vpstr
   """
   Burnouf edition calculation for 'vp' attribute

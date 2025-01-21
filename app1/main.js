@@ -8,8 +8,6 @@ function verse_error(verse) {
 
 function get_verse_from_url() {
  /* two ways to get kanda, sarga, verse from current url
- ?
- ? kanda is 1-6
 */
  let href = window.location.href;
  let url = new URL(href);
@@ -67,13 +65,22 @@ function display_verse_url() {
  let verse = get_verse_from_url();
  //console.log('verse=',verse);
  if (verse == null){
-  verse_error('Invalid url: use kanda,sarga[,verse]');
- }else {
-  let pagerec = get_index_from_verse(verse,indexdata);
+  verse_error('Use ?skandha,adhyaya,verse');
+  return;
+ }
+ let pagerec = get_index_from_verse(verse,indexdata);
+ if (pagerec == null) {
+  verse_error(`Cannot find verse: ${verse}`)
+  return;
+ }  
   //console.log('pagerec=',pagerec);
-  let v = pagerec['v'];
-  let p = pagerec['page'];
-  let id = `page${v}.${p}`;
+  //let v = pagerec['v'];
+  //let p = pagerec['page'];
+  let vp = pagerec['vp'];
+  /* change of 01-20-2025. Use 'vp
+  let id = `page${v}.${p}`; 
+  */
+  let id = `vp_${vp}`;
   //console.log('id=',id);
   let elt = document.getElementById(id); // null on error
   if (! elt) {
@@ -83,10 +90,10 @@ function display_verse_url() {
    elt1.click();
    openTreeAtPageId(id);
   }
- }
+ 
 }
 
-function get_indexdata_from_vol_page(vol0,page) {
+function unused_get_indexdata_from_vol_page(vol0,page) {
  // Use a slow method. indexdata assumed global
  let vol = vol0.toString();
  let kd = indexdata; // kanda object
@@ -104,13 +111,37 @@ function get_indexdata_from_vol_page(vol0,page) {
  }
  return undefined; 
 }
-function display_page(vol,page) {
- let pagerec = get_indexdata_from_vol_page(vol,page);
+function get_indexdata_from_vp(vp) {
+ // Use a slow method. indexdata assumed global
+  let vol0 = vp[0];
+ let vol = vol0.toString();
+ let kd = indexdata; // kanda object
+ for (let k in kd) { // kanda
+  let sd = indexdata[k]; // sarga object
+  for (let s in sd) {
+   let pagerecs = sd[s]; // array of page objects
+   for (let pagerec of pagerecs) {
+    //console.log(pagerec['v'],pagerec['p']);
+    if (pagerec['vp'] != vp) {continue;}
+    //if (pagerec['page'] != page) {continue;}
+    return pagerec; // Success
+   }
+  }
+ }
+ return undefined; 
+}
+//function display_page(vol,page) {
+// let pagerec = get_indexdata_from_vol_page(vol,page);
+function display_page(vp) { // 01-20-2025
+ //console.log('main.js display_page: vp=',vp);
+ let pagerec = get_indexdata_from_vp(vp);
+ //console.log('main.js display_page: pagerec=',pagerec);
  let elt1 = document.getElementById('verseid');
  let elt2 = document.getElementById('verse');
  let html = '';
  if (!pagerec) {
-  html = `Vol ${vol}, Page ${page} NOT FOUND`;
+  //html = `Vol ${vol}, Page ${page} NOT FOUND`;
+  html = `Page ${vp} NOT FOUND`;
   elt1.innerHTML = html;
   elt2.innerHTML = '';
  }else {
@@ -123,14 +154,9 @@ function display_page(vol,page) {
   let vp = pagerec['vp'] // filename
   html = `Skandha ${k}, Adhyāya ${s}, verses ${v1}-${v2}`;
   elt1.innerHTML = html;
-  let page1 = page.toString().padStart(3,'0');
-  /* vol is 1-6. However, the volume 6 is rgorr_uk.N.pdf*/
-  let vol1 = vol;
-  if (vol == 6) {
-   vol1 = 'uk';
-  }
   let pdfcur = `${vp}.pdf`;
   let urlcur = `../pdfpages/${pdfcur}`;
+  //console.log('pdfcur=',pdfcur);
   if (true){ // (true || doesFileExist(urlcur)) 
    let android = ` <a href='${urlcur}' style='position:relative; left:100px;'>Click to load pdf</a>`;
    //let imageElt = `<object id='servepdf' type='application/pdf' data='${urlcur}' 
