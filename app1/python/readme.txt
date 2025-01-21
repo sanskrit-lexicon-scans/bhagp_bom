@@ -166,4 +166,17 @@ cp index.js ../ksverse.js
 Sync to github
 
 --------------------------
+Correction to Bombay.Bhp.index.txt
+OLD:
+I	748	(VII)	4	1	9	9b
+I	748x	(VII)	4	1	16	10a
+NEW:
+I	748	(VII)	4	1	9	9b
+I	748x	(VII)	4	10	16	10a
+
+python make_js_index.py Bombay.BhP.index.txt index.js
+cp index.js ../ksverse.js
+
+Sync to github
+
 THE END
