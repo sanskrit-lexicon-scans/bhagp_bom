@@ -127,5 +127,38 @@ git add .
 git commit -m "Correct oversight in Bombay.BhP.index.txt
 Ref: https://github.com/sanskrit-lexicon/PWG/issues/83"
 git push
+------------------------------------------------------
+Missing pages from comments.docs.md
+These are from volume 1
+AB upload:
+---
+IV.41a.b.pdf
+extract 2 pages renamed 1428x.pdf and 1428y.pdf
+---
+V.17.a.b.alt.pdf
+extract 2 pages renamed 1540x.pdf and 1540y.pdf
+---
+VII.10.a.b.alt.pdf
+extract 2 pages renamed 1748x.pdf and 1748y.pdf
 
+Copy the 6 pages to bhagp_bom/pdfpages
+-------------------------------------
+
+# manual edit Bombay.BhP.index.txt
+Change the index for the new pages
+1428x.pdf  I	428x	(IV)	17	31	36	41a
+1428y.pdf  I	428y	(IV)	18	1	12	41b
+1540x.pdf  I	540x	(V)	7	11	14	17a
+1540y.pdf  I	540y	(V)	8	1	5	17b
+1748x.pdf  I	748x	(VII)	4	1	16	10a
+   Note 1748x  -- Don't see number at end of verse 1
+1748y.pdf  I	748y	(VII)	4	17	31	10b
+   Note: 1749.pdf  I	749	(VII)	4	34	44	11a
+      verses 32 and 33 are missing.
+
+--------------------------
+python make_js_index.py Bombay.BhP.index.txt index.js
+cp index.js ../ksverse.js
+
+--------------------------
 THE END
